@@ -84,6 +84,7 @@ public class SwingCalendar extends JFrame {
                 }
             }
         }
+        calendar.setVisible(true);
         return calendar;
     }
     void updateMonth() {
