@@ -23,7 +23,7 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 
 public class SwingCalendar extends JFrame {
-
+    public static SwingCalendar SingletonCalender;
     DefaultTableModel model;
     Calendar cal = new GregorianCalendar();
     JLabel label;
