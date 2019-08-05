@@ -16,9 +16,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashSet;
 
 public class MainForm extends JFrame {
+    private HashSet<Integer> hashCode ;
     public MainForm() {
+
+        hashCode = new HashSet<Integer>();
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Close the application on JForm exit
         this.setTitle("Main Form");
         this.setSize(600, 200);
@@ -51,11 +56,31 @@ public class MainForm extends JFrame {
     /**
      * Create and show new calender object
      * Todo: This method logs the object HashCode in a text file, after refactoring the code; show warning message if the HashCode of Calender1 doesn't equal Calender2 HashCode
+     *
      */
+    private void addValueToHashCodeSet(int value){
+        hashCode.add(value);
+    }
+    private void ShowMessage() {
+        if (hashCode.size() > 1){
+            JOptionPane.showMessageDialog(null,"there is a problem with Singleton implement " +
+                    "in SwingCalendar class");
+        }else{
+            JOptionPane.showMessageDialog(null,"we have a single object from SwingCalender class" +
+                    "and it value is : " + hashCode.iterator().next() + "\n go to log_file.txt to see");
+        }
+    }
     private void showNewCalender() {
-        SwingCalendar sc = new SwingCalendar();
+        SwingCalendar sc = SwingCalendar.getInstance();
+
+        addValueToHashCodeSet(sc.hashCode());
+
+        ShowMessage();
+
         Util.Logger.log("Object HC: " + sc.hashCode()); // Log Calender hash code
     }
+
+
 
 
 }

@@ -27,9 +27,9 @@ public class SwingCalendar extends JFrame {
     DefaultTableModel model;
     Calendar cal = new GregorianCalendar();
     JLabel label;
-
+    private  static SwingCalendar calendar;
     // Todo: Refactor this constructor so the program will create only one copy of this object
-    SwingCalendar() { // Constructor
+    private SwingCalendar() { // Constructor
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setTitle("Swing Calendar");
@@ -76,6 +76,17 @@ public class SwingCalendar extends JFrame {
 
     }
 
+    public static SwingCalendar getInstance() {
+        if (calendar == null){
+            synchronized (SwingCalendar.class){
+                if (calendar == null){
+                    calendar = new SwingCalendar();
+                }
+            }
+        }
+        calendar.setVisible(true);
+        return calendar;
+    }
     void updateMonth() {
         cal.set(Calendar.DAY_OF_MONTH, 1);
 
