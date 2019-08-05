@@ -75,7 +75,14 @@ public class SwingCalendar extends JFrame {
         this.updateMonth();
 
     }
-
+    public static SwingCalendar getInstance_SingletonCalender() {
+        if (SingletonCalender == null){
+            if (SingletonCalender == null){
+                SingletonCalender = new SwingCalendar();
+            }
+        }
+        return SingletonCalender;
+    }
     void updateMonth() {
         cal.set(Calendar.DAY_OF_MONTH, 1);
 
